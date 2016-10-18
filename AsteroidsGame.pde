@@ -1,4 +1,6 @@
 //your variable declarations here
+SpaceShip bob = new Spaceship();
+
 public void setup() 
 {
   //your code here
@@ -7,9 +9,17 @@ public void draw()
 {
   //your code here
 }
-class SpaceShip //extends Floater  
+class SpaceShip extends Floater  
 {   
-    //your code here
+  corners = 3;
+  xCorners = new int[corners];
+  yCorners = new int[corners];
+  xCorners[0] = -8;
+  yCorners[0] = -8;
+  xCorners[1] = 16;
+  yCorners[1] = 0;
+  xCorners[2] = -8;
+  yCorners[2] = 8;
 }
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
 {   
@@ -17,25 +27,25 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
   protected int[] xCorners;   
   protected int[] yCorners;   
   protected int myColor;   
-  protected double myCenterX, myCenterY; //holds center coordinates   
+  protected double myX, myY; //holds center coordinates   
   protected double myDirectionX, myDirectionY; //holds x and y coordinates of the vector for direction of travel   
   protected double myPointDirection; //holds current direction the ship is pointing in degrees    
-  abstract public void setX(int x);  
-  abstract public int getX();   
-  abstract public void setY(int y);   
-  abstract public int getY();   
-  abstract public void setDirectionX(double x);   
-  abstract public double getDirectionX();   
-  abstract public void setDirectionY(double y);   
-  abstract public double getDirectionY();   
-  abstract public void setPointDirection(int degrees);   
-  abstract public double getPointDirection(); 
+  abstract public void setX(int x){myX = x;}  
+  abstract public int getX(){return myX;}   
+  abstract public void setY(int y){myY = y;}   
+  abstract public int getY(){return myY;}   
+  abstract public void setDirectionX(double x){myDirectionX = x;}  
+  abstract public double getDirectionX(){return myDirectionX;}
+  abstract public void setDirectionY(double y){myDirectionY = y;}
+  abstract public double getDirectionY(){return myDirectionY;}
+  abstract public void setPointDirection(int degrees){myPointDirection = degrees;}   
+  abstract public double getPointDirection(){return myPointDirection;}
 
   //Accelerates the floater in the direction it is pointing (myPointDirection)   
   public void accelerate (double dAmount)   
   {          
     //convert the current direction the floater is pointing to radians    
-    double dRadians =myPointDirection*(Math.PI/180);     
+    double dRadians = myPointDirection*(Math.PI/180);     
     //change coordinates of direction of travel    
     myDirectionX += ((dAmount) * Math.cos(dRadians));    
     myDirectionY += ((dAmount) * Math.sin(dRadians));       
