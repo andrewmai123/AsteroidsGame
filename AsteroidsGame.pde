@@ -1,19 +1,97 @@
 //your variable declarations here
 SpaceShip bob = new SpaceShip();
 
+star[] random = new star[200];
+
+
+
+public void keyPressed()
+  {
+    if (key == 'h')
+    {
+      bob.setX((int)(Math.random()*400));
+      bob.setY((int)(Math.random()*400));
+      bob.setDirectionX(0);
+      bob.setDirectionY(0);
+      bob.accelerate(0);
+
+
+    }
+
+    if (key == 'w')
+    {
+      bob.accelerate(0.5);
+      if (key == 'a')
+      {
+        bob.accelerate(0.5);
+        bob.rotate(-10);
+      }
+    }
+
+
+    if (key == 's')
+    {
+      bob.accelerate(-0.5);
+    }
+    if (key == 'a')
+    {
+      bob.rotate(-10);
+    }
+    else if(key == 'd')
+    {
+      bob.rotate(10);
+    }
+  
+}
+
 public void setup() 
 {
+    background(0);
+  for (int i = 0; i < random.length; i++)
+  {
+    random[i] = new star();
+  }
+
   size(400,400);
+
 }
 public void draw() 
 {
+  background(0);
+  
+  for (int i = 0; i < random.length;i++)
+  {
+    random[i].show();
+  }
+  
   bob.show();
+  bob.move();
+ 
 }
+
+class star 
+{
+  private int x, y;
+  
+  public star()
+  {
+    x = (int)(Math.random()*400);
+    y = (int)(Math.random()*400);
+  }
+
+  void show()
+  {
+    fill(255);
+    ellipse(x,y,2,2);
+  }
+}
+
 class SpaceShip extends Floater  
 {   
+
   public SpaceShip()
   {
-   myColor = 0; 
+   myColor = 255; 
    corners = 3;
    int[] xS = {-8,16,-8,-2};
    int[] yS = {-8,0,8,0};
@@ -22,8 +100,8 @@ class SpaceShip extends Floater
    myCenterX = 200;
    myCenterY = 200;
    myDirectionX = 2;
-   myDirectionY = 3;
-   myPointDirection = 0;
+   myDirectionY = 0;
+   myPointDirection = -3;
 }
 
   
