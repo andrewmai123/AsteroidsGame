@@ -1,5 +1,6 @@
 //your variable declarations here
 SpaceShip bob = new SpaceShip();
+asteroid bill = new asteroid();
 
 star[] random = new star[200];
 
@@ -14,6 +15,7 @@ public void keyPressed()
       bob.setDirectionX(0);
       bob.setDirectionY(0);
       bob.accelerate(0);
+      bob.setPointDirection((int)(Math.random()*360));
 
 
     }
@@ -65,14 +67,46 @@ public void draw()
   }
   
   bob.show();
-  bob.move();
- 
+  bob.move(); 
+  bill.show();
+  bill.move();
 }
+
+class asteroid extends Floater
+{
+  public asteroid()
+  {
+    myColor = 100;
+    corners = 4;
+    int[] xS = {-4,-4,4,4};
+    int[] yS = {-4,4,4,-4};
+    xCorners = xS;
+    yCorners = yS;
+    myCenterX = 200;
+    myCenterY = 200;
+    myDirectionX = 0;
+    myDirectionY = 0;
+    myPointDirection = 0;
+  }
+   public void setX(int x){myCenterX = x;}  
+   public int getX(){return (int)myCenterX;}   
+   public void setY(int y){myCenterY = y;}   
+   public int getY(){return (int)myCenterY;}   
+   public void setDirectionX(double x){myDirectionX = x;}  
+   public double getDirectionX(){return myDirectionX;}
+   public void setDirectionY(double y){myDirectionY = y;}
+   public double getDirectionY(){return myDirectionY;}
+   public void setPointDirection(int degrees){myPointDirection = degrees;}   
+   public double getPointDirection(){return myPointDirection;}
+
+
+}
+
+
 
 class star 
 {
   private int x, y;
-  
   public star()
   {
     x = (int)(Math.random()*400);
@@ -88,7 +122,6 @@ class star
 
 class SpaceShip extends Floater  
 {   
-
   public SpaceShip()
   {
    myColor = 255; 
@@ -103,8 +136,6 @@ class SpaceShip extends Floater
    myDirectionY = 0;
    myPointDirection = -3;
 }
-
-  
    public void setX(int x){myCenterX = x;}  
    public int getX(){return (int)myCenterX;}   
    public void setY(int y){myCenterY = y;}   
