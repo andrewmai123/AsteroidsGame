@@ -1,10 +1,8 @@
 //your variable declarations here
 SpaceShip bob = new SpaceShip();
-asteroid bill = new asteroid();
 
 star[] random = new star[200];
-
-
+asteroid[] field = new asteroid[100]; 
 
 public void keyPressed()
   {
@@ -48,10 +46,15 @@ public void keyPressed()
 
 public void setup() 
 {
-    background(0);
+  background(0);
   for (int i = 0; i < random.length; i++)
   {
     random[i] = new star();
+  }
+
+  for (int x = 0; x < field.length; x++)
+  {
+    field[x] = new asteroid();
   }
 
   size(400,400);
@@ -65,28 +68,41 @@ public void draw()
   {
     random[i].show();
   }
-  
+
+  for (int x = 0; x < field.length; x++)
+  {
+   field[x].show();
+   field[x].move();
+  }  
   bob.show();
   bob.move(); 
-  bill.show();
-  bill.move();
+
 }
 
 class asteroid extends Floater
 {
+  private int rotSpeed = 5;
   public asteroid()
   {
     myColor = 100;
-    corners = 4;
-    int[] xS = {-4,-4,4,4};
-    int[] yS = {-4,4,4,-4};
+    corners = 8;
+    int[] xS = {-12,-8,0,0,12,10,2,0};
+    int[] yS = {-2 ,6 ,8,8, 0,-6,-6,-7};
     xCorners = xS;
     yCorners = yS;
-    myCenterX = 200;
-    myCenterY = 200;
-    myDirectionX = 0;
-    myDirectionY = 0;
+    myCenterX = 100;
+    myCenterY = 300;
+    myDirectionX = 3;
+    myDirectionY = 3;
     myPointDirection = 0;
+
+  }
+
+  public void move()
+  {
+    rotate (rotSpeed);
+    super.move();
+
   }
    public void setX(int x){myCenterX = x;}  
    public int getX(){return (int)myCenterX;}   
@@ -113,7 +129,7 @@ class star
     y = (int)(Math.random()*400);
   }
 
-  void show()
+  public void show()
   {
     fill(255);
     ellipse(x,y,2,2);
@@ -125,9 +141,9 @@ class SpaceShip extends Floater
   public SpaceShip()
   {
    myColor = 255; 
-   corners = 3;
-   int[] xS = {-8,16,-8,-2};
-   int[] yS = {-8,0,8,0};
+   corners = 6;
+   int[] xS = {-11,7,13,7,-11,-5};
+   int[] yS = {-8,-8,0,8,8,0};
    xCorners = xS;
    yCorners = yS;
    myCenterX = 200;
