@@ -2,7 +2,7 @@
 SpaceShip bob = new SpaceShip();
 
 star[] random = new star[200];
-asteroid[] field = new asteroid[100]; 
+asteroid[] field = new asteroid[20]; 
 
 public void keyPressed()
   {
@@ -52,9 +52,9 @@ public void setup()
     random[i] = new star();
   }
 
-  for (int x = 0; x < field.length; x++)
+  for (int i = 0; i < field.length; i++)
   {
-    field[x] = new asteroid();
+    field[i] = new asteroid();
   }
 
   size(400,400);
@@ -69,10 +69,10 @@ public void draw()
     random[i].show();
   }
 
-  for (int x = 0; x < field.length; x++)
+  for (int i = 0; i < field.length; i++)
   {
-   field[x].show();
-   field[x].move();
+   field[i].show();
+   field[i].move();
   }  
   bob.show();
   bob.move(); 
@@ -81,7 +81,8 @@ public void draw()
 
 class asteroid extends Floater
 {
-  private int rotSpeed = 5;
+  private int rotSpeed = (int)(Math.random()*5+3);
+
   public asteroid()
   {
     myColor = 100;
@@ -90,10 +91,10 @@ class asteroid extends Floater
     int[] yS = {-2 ,6 ,8,8, 0,-6,-6,-7};
     xCorners = xS;
     yCorners = yS;
-    myCenterX = 100;
-    myCenterY = 300;
-    myDirectionX = 3;
-    myDirectionY = 3;
+    myCenterX = Math.random()*400;
+    myCenterY = Math.random()*400;
+    myDirectionX = Math.random()*3-1;
+    myDirectionY = Math.random()*3-1;
     myPointDirection = 0;
 
   }
@@ -115,10 +116,7 @@ class asteroid extends Floater
    public void setPointDirection(int degrees){myPointDirection = degrees;}   
    public double getPointDirection(){return myPointDirection;}
 
-
 }
-
-
 
 class star 
 {
@@ -146,8 +144,8 @@ class SpaceShip extends Floater
    int[] yS = {-8,-8,0,8,8,0};
    xCorners = xS;
    yCorners = yS;
-   myCenterX = 200;
-   myCenterY = 200;
+   myCenterX = Math.random()*400;
+   myCenterY = Math.random()*400;
    myDirectionX = 2;
    myDirectionY = 0;
    myPointDirection = -3;
