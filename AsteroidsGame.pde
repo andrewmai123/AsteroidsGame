@@ -1,8 +1,10 @@
 //your variable declarations here
 SpaceShip bob = new SpaceShip();
+star[] random = new star[400];
+ArrayList <asteroid> field = new ArrayList <asteroid>();
 
-star[] random = new star[200];
-asteroid[] field = new asteroid[20]; 
+
+
 
 public void keyPressed()
   {
@@ -41,6 +43,7 @@ public void keyPressed()
     {
       bob.rotate(10);
     }
+
   
 }
 
@@ -52,12 +55,16 @@ public void setup()
     random[i] = new star();
   }
 
-  for (int i = 0; i < field.length; i++)
+  for (int i = 0; i < 20; i++)
   {
-    field[i] = new asteroid();
+    asteroid someasteroid  = new asteroid();
+    field.add(someasteroid);
   }
 
-  size(400,400);
+
+  
+
+  size(800,800);
 
 }
 public void draw() 
@@ -69,10 +76,10 @@ public void draw()
     random[i].show();
   }
 
-  for (int i = 0; i < field.length; i++)
+  for (int i = 0; i < field.size(); i++)
   {
-   field[i].show();
-   field[i].move();
+   field.get(i).show();
+   field.get(i).move();
   }  
   bob.show();
   bob.move(); 
@@ -81,7 +88,7 @@ public void draw()
 
 class asteroid extends Floater
 {
-  private int rotSpeed = (int)(Math.random()*5+3);
+  private int rotSpeed = (int)(Math.random()*3+1);
 
   public asteroid()
   {
@@ -93,8 +100,8 @@ class asteroid extends Floater
     yCorners = yS;
     myCenterX = Math.random()*400;
     myCenterY = Math.random()*400;
-    myDirectionX = Math.random()*3-1;
-    myDirectionY = Math.random()*3-1;
+    myDirectionX = Math.random()*2-1;
+    myDirectionY = Math.random()*2-1;
     myPointDirection = 0;
 
   }
@@ -123,8 +130,8 @@ class star
   private int x, y;
   public star()
   {
-    x = (int)(Math.random()*400);
-    y = (int)(Math.random()*400);
+    x = (int)(Math.random()*800);
+    y = (int)(Math.random()*800);
   }
 
   public void show()
@@ -236,5 +243,4 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     }   
     endShape(CLOSE);  
   }   
-} 
-
+}
