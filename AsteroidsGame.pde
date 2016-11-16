@@ -10,8 +10,8 @@ public void keyPressed()
   {
     if (key == 'h')
     {
-      bob.setX((int)(Math.random()*400));
-      bob.setY((int)(Math.random()*400));
+      bob.setX((int)(Math.random()*800));
+      bob.setY((int)(Math.random()*800));
       bob.setDirectionX(0);
       bob.setDirectionY(0);
       bob.accelerate(0);
@@ -55,11 +55,13 @@ public void setup()
     random[i] = new star();
   }
 
-  for (int i = 0; i < 20; i++)
+  for (int i = 0; i < 50; i++)
   {
     asteroid someasteroid  = new asteroid();
     field.add(someasteroid);
   }
+
+
 
 
   
@@ -80,6 +82,12 @@ public void draw()
   {
    field.get(i).show();
    field.get(i).move();
+   if (dist(field.get(i).getX(), field.get(i).getY(), bob.getX(), bob.getY()) < 20)
+   {
+     field.remove(i);
+   }
+
+
   }  
   bob.show();
   bob.move(); 
@@ -98,8 +106,8 @@ class asteroid extends Floater
     int[] yS = {-2 ,6 ,8,8, 0,-6,-6,-7};
     xCorners = xS;
     yCorners = yS;
-    myCenterX = Math.random()*400;
-    myCenterY = Math.random()*400;
+    myCenterX = Math.random()*800;
+    myCenterY = Math.random()*800;
     myDirectionX = Math.random()*2-1;
     myDirectionY = Math.random()*2-1;
     myPointDirection = 0;
