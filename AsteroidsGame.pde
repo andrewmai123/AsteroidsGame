@@ -2,6 +2,7 @@
 SpaceShip bob = new SpaceShip();
 star[] random = new star[400];
 ArrayList <asteroid> field = new ArrayList <asteroid>();
+bullet bill = new bullet();
 
 
 
@@ -49,6 +50,8 @@ public void keyPressed()
 
 public void setup() 
 {
+  size(800,800);
+
   background(0);
   for (int i = 0; i < random.length; i++)
   {
@@ -61,12 +64,6 @@ public void setup()
     field.add(someasteroid);
   }
 
-
-
-
-  
-
-  size(800,800);
 
 }
 public void draw() 
@@ -91,6 +88,9 @@ public void draw()
   }  
   bob.show();
   bob.move(); 
+  bill.show();
+  bill.move();
+
 
 }
 
@@ -118,8 +118,8 @@ class asteroid extends Floater
   {
     rotate (rotSpeed);
     super.move();
-
   }
+  
    public void setX(int x){myCenterX = x;}  
    public int getX(){return (int)myCenterX;}   
    public void setY(int y){myCenterY = y;}   
@@ -130,7 +130,6 @@ class asteroid extends Floater
    public double getDirectionY(){return myDirectionY;}
    public void setPointDirection(int degrees){myPointDirection = degrees;}   
    public double getPointDirection(){return myPointDirection;}
-
 }
 
 class star 
