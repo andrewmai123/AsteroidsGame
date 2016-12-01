@@ -3,6 +3,7 @@ SpaceShip bob = new SpaceShip();
 star[] random = new star[400];
 ArrayList <asteroid> field = new ArrayList <asteroid>();
 bullet bill = new bullet();
+ArrayList <bullet> list = new ArrayList <bullet>();
 
 
 
@@ -17,8 +18,6 @@ public void keyPressed()
       bob.setDirectionY(0);
       bob.accelerate(0);
       bob.setPointDirection((int)(Math.random()*360));
-
-
     }
 
     if (key == 'w')
@@ -30,8 +29,6 @@ public void keyPressed()
         bob.rotate(-10);
       }
     }
-
-
     if (key == 's')
     {
       bob.accelerate(-0.5);
@@ -43,6 +40,15 @@ public void keyPressed()
     else if(key == 'd')
     {
       bob.rotate(10);
+    }
+
+    if (key == 'f')
+    {
+      for (int i=0; i<1; i++)
+      {
+        bullet somebullet = new bullet();
+        list.add(somebullet);
+      }
     }
 
   
@@ -80,12 +86,16 @@ public void draw()
    field.get(i).show();
    field.get(i).move();
    if (dist(field.get(i).getX(), field.get(i).getY(), bob.getX(), bob.getY()) < 20)
-   {
-     field.remove(i);
-   }
+    {
+      field.remove(i);
+    }
+  } 
 
-
-  }  
+  for (int i = 0; i < list.size(); i++)
+  {
+    list.get(i).show();
+    list.get(i).move();
+  } 
   bob.show();
   bob.move(); 
   bill.show();
