@@ -1,9 +1,5 @@
 class bullet extends Floater
 {	
-	public void show()
-	{
-		ellipse((int)myCenterX,(int)myCenterY,10,0);
-	}
 
 	public bullet(SpaceShip theShip)
 	{
@@ -23,10 +19,22 @@ class bullet extends Floater
 
 	}
 
+	public void move ()   //move the floater in the current direction of travel
+  {      
+    //change the x and y coordinates by myDirectionX and myDirectionY       
+    myCenterX += myDirectionX;    
+    myCenterY += myDirectionY;     
+}   
+
+	public void show()
+	{
+		fill(255,255,255);
+		ellipse((int)myCenterX,(int)myCenterY,5,5);
+	}
 
 	public bullet()
 	{
-		myColor = 0;
+		myColor = 255;
 	    corners = 4;
 	    int[] xS = {-4,4,4,-4};
 	    int[] yS = {4,4,-4,-4};

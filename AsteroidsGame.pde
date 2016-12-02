@@ -46,7 +46,7 @@ public void keyPressed()
     {
       for (int i=0; i<1; i++)
       {
-        bullet somebullet = new bullet();
+        bullet somebullet = new bullet(bob);
         list.add(somebullet);
       }
     }
@@ -96,6 +96,22 @@ public void draw()
     list.get(i).show();
     list.get(i).move();
   } 
+
+  for (int i = 0; i < field.size();i++)
+  {
+    for (int j = 0; j < list.size(); j++)
+    {
+      
+      if (dist (field.get(i).getX(),field.get(i).getY(),list.get(j).getX(),list.get(j).getY()) < 20)
+      {
+        field.remove(i);
+        list.remove(j);
+        break;
+      }
+    }
+  }
+  
+
   bob.show();
   bob.move(); 
   bill.show();
