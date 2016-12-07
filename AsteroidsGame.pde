@@ -4,7 +4,11 @@ star[] random = new star[400];
 ArrayList <asteroid> field = new ArrayList <asteroid>();
 bullet bill = new bullet();
 ArrayList <bullet> list = new ArrayList <bullet>();
-
+boolean wPressed = false;
+boolean aPressed = false;
+boolean dPressed = false;
+boolean sPressed = false;
+boolean spacePressed = false;
 
 
 
@@ -22,36 +26,60 @@ public void keyPressed()
 
     if (key == 'w')
     {
-      bob.accelerate(0.5);
-      if (key == 'a')
-      {
-        bob.accelerate(0.5);
-        bob.rotate(-10);
-      }
+      wPressed = true;
+ 
+
     }
     if (key == 's')
     {
-      bob.accelerate(-0.5);
+      sPressed = true;
+
     }
     if (key == 'a')
     {
+      aPressed = true;
       bob.rotate(-10);
     }
     else if(key == 'd')
     {
+      dPressed = true;
       bob.rotate(10);
     }
 
-    if (key == 'f')
+    if (key == ' ')
     {
-      for (int i=0; i<1; i++)
-      {
-        bullet somebullet = new bullet(bob);
-        list.add(somebullet);
-      }
+      spacePressed = true;
     }
 
-  
+
+}
+
+public void keyReleased()
+{
+  if(key == 'w')
+  {
+    wPressed = false;
+  }
+
+  if (key == 'a')
+  {
+    aPressed = false;
+  }
+
+  if (key == 'd')
+  {
+    dPressed = false;
+  }
+
+  if (key == 's')
+  {
+    sPressed = false;
+  }
+
+  if (key == ' ')
+  {
+    spacePressed = false;
+  }
 }
 
 public void setup() 
@@ -76,6 +104,38 @@ public void draw()
 {
   background(0);
   
+  if (wPressed == true)
+  {
+    bob.accelerate(0.08);
+    
+  }
+
+  if (dPressed == true)
+  {
+    bob.rotate(5);
+  }
+
+  if (aPressed == true)
+  {
+    bob.rotate(-5);
+  }
+
+  if (sPressed == true)
+  {
+    bob.accelerate(-0.08);
+  }
+
+  if (spacePressed == true)
+    {
+      for (int i=0; i<1; i++)
+      {
+        bullet somebullet = new bullet(bob);
+        list.add(somebullet);
+      }
+    }
+
+
+
   for (int i = 0; i < random.length;i++)
   {
     random[i].show();
